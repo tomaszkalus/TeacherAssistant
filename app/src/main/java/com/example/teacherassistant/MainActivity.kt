@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recyclerView = findViewById<RecyclerView>(R.id.classes_recycler_view)
-        val adapter = ClassListAdapterNew()
+        val adapter = ClassListAdapter()
         val layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = layoutManager

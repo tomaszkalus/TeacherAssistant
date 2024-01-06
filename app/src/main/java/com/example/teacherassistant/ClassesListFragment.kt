@@ -1,18 +1,14 @@
 package com.example.teacherassistant
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teacherassistant.databinding.FragmentClassesListBinding
@@ -30,7 +26,7 @@ class ClassesListFragment : Fragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
 
-        val adapter = ClassListAdapterNew()
+        val adapter = ClassListAdapter()
 
         studyClassViewModel.allStudyClasses.observe(this, Observer { studyClasses ->
             studyClasses?.let { adapter.submitList(it) }
@@ -60,18 +56,6 @@ class ClassesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = binding.classesRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
-
-//        val dataset = viewModel.allStudyClasses
-
-//        val dataset = arrayOf(
-//            "Aplikacje Android gr.1 środy",
-//            "Inżynieria Oprogramowania gr. 3 wtorki",
-//            "Programowanie gr. 1 poniedziałki",
-//            "Elektrotechnika gr. 3 piątki")
-
-//        val classListAdapter = ClassListAdapterNew(dataset)
-
-//        recyclerView.adapter = classListAdapter
 
     }
 }
