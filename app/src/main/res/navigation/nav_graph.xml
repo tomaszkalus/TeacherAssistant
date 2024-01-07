@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/classesListFragment">
+
+    <fragment
+        android:id="@+id/classesListFragment"
+        android:name="com.example.teacherassistant.ClassesListFragment"
+        android:label="Wybór zajęć"
+        tools:layout="@layout/fragment_classes_list">
+        <action
+            android:id="@+id/action_classesListFragment_to_createNewClassFragment"
+            app:destination="@id/createNewClassFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createNewClassFragment"
+        android:name="com.example.teacherassistant.CreateNewClassFragment"
+        android:label="fragment_create_new_class"
+        tools:layout="@layout/fragment_create_new_class" />
+</navigation>

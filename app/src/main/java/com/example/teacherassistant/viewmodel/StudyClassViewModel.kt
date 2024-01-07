@@ -18,7 +18,8 @@ class StudyClassViewModel(private val repository: StudyClassRepository) : ViewMo
     }
 }
 
-class StudyClassViewModelFactory(private val repository: StudyClassRepository) : ViewModelProvider.Factory {
+class StudyClassViewModelFactory(private val repository: StudyClassRepository) :
+    ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(StudyClassViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")

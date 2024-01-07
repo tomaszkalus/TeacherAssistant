@@ -1,7 +1,9 @@
-plugins {
+
+ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("androidx.navigation.safeargs")
 }
 
 
@@ -43,6 +45,16 @@ android {
         viewBinding = true
     }
 }
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        val nav_version = "2.7.6"
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+    }
+}
 
 dependencies {
 
@@ -52,6 +64,8 @@ dependencies {
     val kotlin_version = "1.9.0"
     val coroutines_version = "1.6.0"
     val junit_version = "4.13.2"
+
+
 
     // Room components
     implementation("androidx.room:room-ktx:$room_version")

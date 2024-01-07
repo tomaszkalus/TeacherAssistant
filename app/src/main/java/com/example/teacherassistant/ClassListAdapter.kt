@@ -22,7 +22,7 @@ class ClassListAdapter :
     }
 
     class StudyClassViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val studyClassItemView : TextView = itemView.findViewById(R.id.button)
+        private val studyClassItemView: TextView = itemView.findViewById(R.id.button)
 
         fun bind(text: String?) {
             studyClassItemView.text = text

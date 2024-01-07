@@ -1,61 +1,77 @@
 package com.example.teacherassistant
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teacherassistant.databinding.FragmentClassesListBinding
 import com.example.teacherassistant.viewmodel.StudyClassViewModel
+import com.example.teacherassistant.viewmodel.StudyClassViewModelFactory
 
 class ClassesListFragment : Fragment() {
-//    private val viewModel: StudyClassViewModel by viewModels()
     private var _binding: FragmentClassesListBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: ClassListAdapter
 
-    private val studyClassViewModel: StudyClassViewModel by activityViewModels()
+    private val studyClassViewModel: StudyClassViewModel by viewModels {
+        StudyClassViewModelFactory((activity?.application as TeacherAssistantApplication).repository)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentClassesListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recyclerView = binding.classesRecyclerView
+        val layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = layoutManager
+        adapter = ClassListAdapter()
+        recyclerView.adapter = adapter
+
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                recyclerView.context, layoutManager.orientation
+            )
+        )
+
+        studyClassViewModel.allStudyClasses.observe(viewLifecycleOwner) { studyClasses ->
+            studyClasses?.let {
+                Log.d("dbx", "Study Classes Size: ${it.size}")
+                adapter.submitList(it)
+            }
+        }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("ClassesListFragment", "onCreate called")
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
 
-        val adapter = ClassListAdapter()
+        view?.findViewById<Button>(R.id.add_class_button)?.setOnClickListener {
+            val action =
+                ClassesListFragmentDirections.actionClassesListFragmentToCreateNewClassFragment()
+        }
 
-        studyClassViewModel.allStudyClasses.observe(this, Observer { studyClasses ->
-            studyClasses?.let { adapter.submitList(it) }
-        })
+        Log.d("dbx", studyClassViewModel.allStudyClasses.value?.size.toString())
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.layout_menu, menu)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentClassesListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        recyclerView = binding.classesRecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(context)
-
-    }
 }

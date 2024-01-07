@@ -8,4 +8,10 @@
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
     <string name="add_word">Add word</string>
+    <string name="add_classes_btn_text">Dodaj zajęcia</string>
+    <string name="delete_classes_btn_text">Usuń zajęcia</string>
+    <string name="pick_classes_btn_text">Wybierz zajęcia:</string>
+    <string name="study_class_name_text_hint">Nazwa grupy (zajęcia)</string>
+    <string name="example_study_class_name_text">Np. \'\'Programowanie gr. 2 wtorki 10:00\'\'</string>
+    <string name="add_new_class_text">Dodaj zajęcia</string>
 </resources>

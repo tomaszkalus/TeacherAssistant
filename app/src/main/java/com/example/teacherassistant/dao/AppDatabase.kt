@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 
 @Database(entities = [StudyClass::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-    //    abstract fun studentDao(): StudentDao
     abstract fun studyClassDao(): StudyClassDao
 
     companion object {
@@ -23,12 +22,12 @@ abstract class AppDatabase : RoomDatabase() {
         fun getDatabase(
             context: Context, scope: CoroutineScope
         ): AppDatabase {
+            Log.d("dbx", "getDatabase called")
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext, AppDatabase::class.java, "teacher_assistant_db"
                 ).fallbackToDestructiveMigration().addCallback(AppDatabaseCallback(scope)).build()
                 INSTANCE = instance
-                // return instance
                 instance
             }
         }
@@ -36,9 +35,10 @@ abstract class AppDatabase : RoomDatabase() {
 
     private class AppDatabaseCallback(
         private val scope: CoroutineScope
-    ) : RoomDatabase.Callback() {
+    ) : Callback() {
 
         override fun onCreate(db: SupportSQLiteDatabase) {
+            Log.d("dbx", "Database onCreate called")
             super.onCreate(db)
             INSTANCE?.let { database ->
                 scope.launch(Dispatchers.IO) {
