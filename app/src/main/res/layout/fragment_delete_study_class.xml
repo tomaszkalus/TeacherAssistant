@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DeleteStudyClassFragment">
+
+    <TextView
+        android:id="@+id/pick_classes_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:text="Wybierz grupy zajęciowe do usunięcia"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/delete_classes_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/remove_classes_button"
+        app:layout_constraintTop_toBottomOf="@+id/pick_classes_text_view" />
+
+        <Button
+            android:id="@+id/remove_classes_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_classes_btn_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

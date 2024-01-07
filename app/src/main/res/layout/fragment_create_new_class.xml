@@ -23,7 +23,8 @@
 
         android:ems="10"
         android:inputType="text"
-        android:text="@string/example_study_class_name_text" />
+        android:hint="@string/example_study_class_name_text"
+        android:autofillHints="" />
 
 
 

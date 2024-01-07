@@ -2,25 +2,25 @@ package com.example.teacherassistant
 
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teacherassistant.databinding.FragmentClassesListBinding
+import com.example.teacherassistant.databinding.FragmentDeleteStudyClassBinding
 import com.example.teacherassistant.viewmodel.StudyClassViewModel
 import com.example.teacherassistant.viewmodel.StudyClassViewModelFactory
 
-class ClassesListFragment : Fragment() {
-    private var _binding: FragmentClassesListBinding? = null
+class DeleteStudyClassFragment : Fragment() {
+    private var _binding: FragmentDeleteStudyClassBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: ClassListAdapter
+    private lateinit var adapter: DeleteClassListAdapter
 
     private val studyClassViewModel: StudyClassViewModel by viewModels {
         StudyClassViewModelFactory((activity?.application as TeacherAssistantApplication).repository)
@@ -29,17 +29,17 @@ class ClassesListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentClassesListBinding.inflate(inflater, container, false)
+        _binding = FragmentDeleteStudyClassBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView = binding.classesRecyclerView
+        recyclerView = binding.deleteClassesRecyclerView
         val layoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
-        adapter = ClassListAdapter()
+        adapter = DeleteClassListAdapter()
         recyclerView.adapter = adapter
 
         recyclerView.addItemDecoration(
@@ -50,21 +50,12 @@ class ClassesListFragment : Fragment() {
 
         studyClassViewModel.allStudyClasses.observe(viewLifecycleOwner) { studyClasses ->
             studyClasses?.let {
-                Log.d("dbx", "Study Classes Size: ${it.size}")
                 adapter.submitList(it)
             }
         }
 
-        binding.addClassButton.setOnClickListener {
-            val action =
-                ClassesListFragmentDirections.actionClassesListFragmentToCreateNewClassFragment()
-            it.findNavController().navigate(action)
-        }
-
-        binding.deleteClassButton.setOnClickListener {
-            val action =
-                ClassesListFragmentDirections.actionClassesListFragmentToDeleteStudyClassFragment()
-            it.findNavController().navigate(action)
+        binding.removeClassesButton.setOnClickListener {
+            Log.d("ClassesListFragment", "removeClassesButton clicked")
         }
     }
 
@@ -72,6 +63,8 @@ class ClassesListFragment : Fragment() {
         Log.d("ClassesListFragment", "onCreate called")
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+
+
 
         Log.d("dbx", studyClassViewModel.allStudyClasses.value?.size.toString())
     }

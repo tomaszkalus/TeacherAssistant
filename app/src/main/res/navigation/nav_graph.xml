@@ -13,10 +13,22 @@
         <action
             android:id="@+id/action_classesListFragment_to_createNewClassFragment"
             app:destination="@id/createNewClassFragment" />
+        <action
+            android:id="@+id/action_classesListFragment_to_deleteStudyClassFragment"
+            app:destination="@id/deleteStudyClassFragment" />
     </fragment>
     <fragment
         android:id="@+id/createNewClassFragment"
         android:name="com.example.teacherassistant.CreateNewClassFragment"
-        android:label="fragment_create_new_class"
-        tools:layout="@layout/fragment_create_new_class" />
+        android:label="Tworzenie grupy zajęciowej"
+        tools:layout="@layout/fragment_create_new_class" >
+        <action
+            android:id="@+id/action_createNewClassFragment_to_classesListFragment"
+            app:destination="@id/classesListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/deleteStudyClassFragment"
+        android:name="com.example.teacherassistant.DeleteStudyClassFragment"
+        android:label="Usuwanie grup zajęciowych"
+        tools:layout="@layout/fragment_delete_study_class" />
 </navigation>
