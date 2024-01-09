@@ -16,6 +16,10 @@ class StudyClassViewModel(private val repository: StudyClassRepository) : ViewMo
     fun insert(studyClass: StudyClass) = viewModelScope.launch {
         repository.insert(studyClass)
     }
+
+    fun delete(studyClass: StudyClass) = viewModelScope.launch {
+        repository.delete(studyClass)
+    }
 }
 
 class StudyClassViewModelFactory(private val repository: StudyClassRepository) :

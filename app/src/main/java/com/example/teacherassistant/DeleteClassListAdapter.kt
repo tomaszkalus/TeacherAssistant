@@ -3,7 +3,10 @@ package com.example.teacherassistant
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CheckBox
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +22,7 @@ class DeleteClassListAdapter :
     override fun onBindViewHolder(holder: DeleteStudyClassViewHolder, position: Int) {
         val current = getItem(position)
         holder.bind(current.name)
+
     }
 
     class DeleteStudyClassViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

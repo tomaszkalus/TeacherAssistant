@@ -14,4 +14,10 @@ class StudyClassRepository(private val studyClassDao: StudyClassDao) {
     suspend fun insert(studyClass: StudyClass) {
         studyClassDao.insertAll(studyClass)
     }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun delete(studyClass: StudyClass) {
+        studyClassDao.delete(studyClass)
+    }
 }

@@ -12,9 +12,11 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="15dp"
         android:text="@string/study_class_name_text_hint" />
 
     <EditText
+        android:layout_marginHorizontal="15dp"
         android:id="@+id/classNameTextInput"
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -53,7 +55,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/add_new_class_text">
+        android:text="@string/add_new_class_text"
+        android:layout_marginBottom="10dp">
 
     </Button>
 

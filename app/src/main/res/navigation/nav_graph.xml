@@ -30,5 +30,9 @@
         android:id="@+id/deleteStudyClassFragment"
         android:name="com.example.teacherassistant.DeleteStudyClassFragment"
         android:label="Usuwanie grup zajęciowych"
-        tools:layout="@layout/fragment_delete_study_class" />
+        tools:layout="@layout/fragment_delete_study_class" >
+        <action
+            android:id="@+id/action_deleteStudyClassFragment_to_classesListFragment"
+            app:destination="@id/classesListFragment" />
+    </fragment>
 </navigation>

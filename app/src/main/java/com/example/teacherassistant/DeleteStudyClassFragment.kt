@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
+import androidx.core.view.size
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -21,6 +23,7 @@ class DeleteStudyClassFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: DeleteClassListAdapter
+
 
     private val studyClassViewModel: StudyClassViewModel by viewModels {
         StudyClassViewModelFactory((activity?.application as TeacherAssistantApplication).repository)
@@ -48,6 +51,8 @@ class DeleteStudyClassFragment : Fragment() {
             )
         )
 
+
+
         studyClassViewModel.allStudyClasses.observe(viewLifecycleOwner) { studyClasses ->
             studyClasses?.let {
                 adapter.submitList(it)
@@ -55,7 +60,24 @@ class DeleteStudyClassFragment : Fragment() {
         }
 
         binding.removeClassesButton.setOnClickListener {
-            Log.d("ClassesListFragment", "removeClassesButton clicked")
+
+            val studyClassesToDelete = mutableListOf<Int>()
+
+            for (i in 0 until recyclerView.size) {
+                Log.d("ClassesListFragment", "item $i: ${recyclerView.getChildAt(i)}")
+                val checkBox = recyclerView.getChildAt(i).findViewById<CheckBox>(R.id.studyClassCheckbox)
+                val checked = checkBox.isChecked
+                if (checked) {
+                    studyClassesToDelete.add(i)
+                }
+            }
+
+            adapter.currentList.forEachIndexed { index, studyClass ->
+                if (studyClassesToDelete.contains(index)) {
+                    studyClassViewModel.delete(studyClass)
+                }
+            }
+            view.findNavController().navigate(R.id.action_deleteStudyClassFragment_to_classesListFragment)
         }
     }
 
