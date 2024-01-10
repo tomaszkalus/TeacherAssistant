@@ -6,14 +6,17 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.teacherassistant.model.Student
+import com.example.teacherassistant.model.StudentClassCrossRef
 import com.example.teacherassistant.model.StudyClass
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [StudyClass::class], version = 1, exportSchema = false)
+@Database(entities = [StudyClass::class, Student::class, StudentClassCrossRef::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun studyClassDao(): StudyClassDao
+    abstract fun studentDao(): StudentDao
 
     companion object {
         @Volatile
@@ -42,12 +45,12 @@ abstract class AppDatabase : RoomDatabase() {
             super.onCreate(db)
             INSTANCE?.let { database ->
                 scope.launch(Dispatchers.IO) {
-                    populateDatabase(database.studyClassDao())
+                    populateDatabase(database.studyClassDao(), database.studentDao())
                 }
             }
         }
 
-        suspend fun populateDatabase(studyClassDao: StudyClassDao) {
+        suspend fun populateDatabase(studyClassDao: StudyClassDao, studentDao: StudentDao){
             studyClassDao.deleteAll()
 
             var studyClass = StudyClass("Aplikacje mobilne gr. 2")
@@ -58,6 +61,12 @@ abstract class AppDatabase : RoomDatabase() {
 
             studyClass = StudyClass("Algorytmy i Struktury Danych gr. 1 piątek")
             studyClassDao.insertAll(studyClass)
+
+            studentDao.deleteAll()
+
+            studentDao.insertAll(Student("Jan", "Kowalski"))
+            studentDao.insertAll(Student("Tomasz", "Nowak"))
+            studentDao.insertAll(Student("John", "Smith"))
         }
     }
 

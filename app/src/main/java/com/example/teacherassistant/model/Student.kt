@@ -1,7 +1,11 @@
 package com.example.teacherassistant.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+@Entity(tableName = "student")
 data class Student(
-    val studentId: Int,
-    val firstName: String,
-    val lastName: String,
+    @ColumnInfo val firstName: String,
+    @ColumnInfo val lastName: String,
+    @PrimaryKey(autoGenerate = true) val studentId: Int? = null,
 )

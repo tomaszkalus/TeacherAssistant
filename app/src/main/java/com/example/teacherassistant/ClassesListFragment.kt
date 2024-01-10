@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -64,6 +63,12 @@ class ClassesListFragment : Fragment() {
         binding.deleteClassButton.setOnClickListener {
             val action =
                 ClassesListFragmentDirections.actionClassesListFragmentToDeleteStudyClassFragment()
+            it.findNavController().navigate(action)
+        }
+
+        binding.allStudentsButton.setOnClickListener {
+            val action =
+                ClassesListFragmentDirections.actionClassesListFragmentToAllStudentsListFragment()
             it.findNavController().navigate(action)
         }
     }

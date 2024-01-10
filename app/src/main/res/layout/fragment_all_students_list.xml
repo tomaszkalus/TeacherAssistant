@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClassesListFragment">
+    tools:context=".AllStudentsListFragment">
 
     <TextView
         android:id="@+id/pick_classes_text_view"
@@ -14,13 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        android:text="@string/pick_classes_btn_text"
+        android:text="@string/all_students_text"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/classes_recycler_view"
+        android:id="@+id/all_students_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
@@ -33,36 +31,24 @@
         android:id="@+id/buttonsLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
-            android:id="@+id/all_students_button"
+            android:id="@+id/add_student_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:text="Lista studentów"
+            android:text="@string/add_student_btn_text"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <Button
-            android:id="@+id/add_class_button"
+            android:id="@+id/delete_student_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="3dp"
-            android:text="@string/add_classes_btn_text"
-            android:textSize="12sp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/delete_student_btn_text"
             app:layout_constraintBottom_toBottomOf="parent" />
-
-        <Button
-            android:id="@+id/delete_class_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/delete_classes_btn_text"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

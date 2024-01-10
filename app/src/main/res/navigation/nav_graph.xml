@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_classesListFragment_to_deleteStudyClassFragment"
             app:destination="@id/deleteStudyClassFragment" />
+        <action
+            android:id="@+id/action_classesListFragment_to_allStudentsListFragment"
+            app:destination="@id/allStudentsListFragment" />
     </fragment>
     <fragment
         android:id="@+id/createNewClassFragment"
@@ -35,4 +38,9 @@
             android:id="@+id/action_deleteStudyClassFragment_to_classesListFragment"
             app:destination="@id/classesListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/allStudentsListFragment"
+        android:name="com.example.teacherassistant.AllStudentsListFragment"
+        android:label="Wszyscy studenci"
+        tools:layout="@layout/fragment_students_list2" />
 </navigation>
