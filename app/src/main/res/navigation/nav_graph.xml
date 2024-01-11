@@ -42,5 +42,18 @@
         android:id="@+id/allStudentsListFragment"
         android:name="com.example.teacherassistant.AllStudentsListFragment"
         android:label="Wszyscy studenci"
-        tools:layout="@layout/fragment_students_list2" />
+        tools:layout="@layout/fragment_students_list2" >
+        <action
+            android:id="@+id/action_allStudentsListFragment_to_newStudentCreatorFragment"
+            app:destination="@id/newStudentCreatorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newStudentCreatorFragment"
+        android:name="com.example.teacherassistant.NewStudentCreatorFragment"
+        android:label="Dodawanie studenta"
+        tools:layout="@layout/fragment_new_student_creator">
+        <action
+            android:id="@+id/action_newStudentCreatorFragment_to_allStudentsListFragment"
+            app:destination="@id/allStudentsListFragment" />
+    </fragment>
 </navigation>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".NewStudentCreatorFragment">
+
+    <TextView
+        android:id="@+id/studentFirstNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="15dp"
+        android:text="Imię studenta:" />
+
+    <EditText
+        android:layout_marginHorizontal="15dp"
+        android:id="@+id/studentFirstNameTextInput"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/studentFirstNameTextView"
+
+        android:ems="10"
+        android:inputType="text"
+        android:hint="np. Jan"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/studentLastNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/studentFirstNameTextInput"
+        android:layout_margin="15dp"
+        android:text="Nazwisko studenta:" />
+
+    <EditText
+        android:layout_marginHorizontal="15dp"
+        android:id="@+id/studentLastNameTextInput"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/studentLastNameTextView"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="np. Kowalski"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/assign_students_to_classes_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/studentLastNameTextInput"
+        android:layout_margin="15dp"
+        android:text="Przypisz do zajęć:" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/classes_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/addNewStudentButton"
+        app:layout_constraintTop_toBottomOf="@+id/assign_students_to_classes_text_view" />
+
+
+    <Button
+        android:id="@+id/addNewStudentButton"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Dodaj studenta"
+        android:layout_marginBottom="10dp">
+
+    </Button>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,4 +14,7 @@
     <string name="study_class_name_text_hint">Nazwa grupy (zajęcia)</string>
     <string name="example_study_class_name_text">Np. \'\'Programowanie gr. 2 wtorki 10:00\'\'</string>
     <string name="add_new_class_text">Dodaj zajęcia</string>
+    <string name="all_students_text">Wszyscy studenci:</string>
+    <string name="add_student_btn_text">Dodaj studenta</string>
+    <string name="delete_student_btn_text">Usuń studenta</string>
 </resources>
